@@ -29,8 +29,10 @@ app.get("/books", (req, res) => {
 });
 
 app.post("/books", (req, res) => {
+  console.log("Received book creation request:", req.body); 
   const q = "INSERT INTO books(`title`, `desc`, `price`, `cover`) VALUES (?)";
-
+  console.log("Generated SQL query:", q); // Log the generated SQL query
+  console.log("Prepared values:", values); // Log the values being inserted
   const values = [
     req.body.title,
     req.body.desc,
