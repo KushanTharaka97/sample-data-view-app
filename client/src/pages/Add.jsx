@@ -21,7 +21,8 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/books", book);
+      const response =  await axios.post("http://localhost:8800/books", book);
+      console.log("Book creation successful:", response.data); // Log response data
       navigate("/");
     } catch (err) {
       console.log(err);
