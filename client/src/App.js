@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Add from "./pages/Add";
-import Books from "./pages/Books";
+import Movies from "./pages/Movies";
 import Update from "./pages/Update";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Books />} />
+          <Route path="/" element={<Movies />} />
           <Route path="/add" element={<Add />} />
           <Route path="/update/:id" element={<Update />} />
         </Routes>
