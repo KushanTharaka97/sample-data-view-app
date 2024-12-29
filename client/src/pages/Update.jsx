@@ -24,7 +24,7 @@ const Update = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:8800/books/${bookId}`, book);
+      await axios.put(`http://localhost:8800/movies/${bookId}`, book);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -62,7 +62,7 @@ const Update = () => {
       />
       <button onClick={handleClick}>Update</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/">See all movies</Link>
     </div>
   );
 };
