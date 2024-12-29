@@ -21,7 +21,7 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response =  await axios.post("http://localhost:8800/books", book);
+      const response =  await axios.post("http://localhost:8800/movies", book);
       console.log("Book creation successful:", response.data); // Log response data
       navigate("/");
     } catch (err) {
@@ -60,7 +60,7 @@ const Add = () => {
       />
       <button onClick={handleClick}>Add</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/">See all movies</Link>
     </div>
   );
 };
