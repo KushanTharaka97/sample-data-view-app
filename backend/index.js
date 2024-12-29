@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
   res.json("hello");
 });
 
-app.get("/books", (req, res) => {
-  const q = "SELECT * FROM books";
+app.get("/movies", (req, res) => {
+  const q = "SELECT * FROM movies";
   db.query(q, (err, data) => {
     if (err) {
       console.log(err);
@@ -28,11 +28,13 @@ app.get("/books", (req, res) => {
   });
 });
 
-app.post("/books", (req, res) => {
-  console.log("Received book creation request:", req.body); 
-  const q = "INSERT INTO books(`title`, `desc`, `price`, `cover`) VALUES (?)";
+app.post("/movies", (req, res) => {
+  console.log("Received movie creation request:", req.body); 
+  const q = "INSERT INTO movies(`title`, `desc`, `price`, `cover`) VALUES (?)";
+  
   console.log("Generated SQL query:", q); // Log the generated SQL query
-  console.log("Prepared values:", values); // Log the values being inserted
+  
+ 
   const values = [
     req.body.title,
     req.body.desc,
@@ -40,15 +42,21 @@ app.post("/books", (req, res) => {
     req.body.cover,
   ];
 
+  console.log("Prepared values:", values); // Log the values being inserted
+
+  // Use 'values' correctly
   db.query(q, [values], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
+    if (err) {
+      console.error(err);
+      return res.status(500).json(err);
+    }
+    return res.status(200).json("Movie has been added.");
   });
 });
 
-app.delete("/books/:id", (req, res) => {
+app.delete("/movies/:id", (req, res) => {
   const bookId = req.params.id;
-  const q = " DELETE FROM books WHERE id = ? ";
+  const q = " DELETE FROM movies WHERE id = ? ";
 
   db.query(q, [bookId], (err, data) => {
     if (err) return res.send(err);
@@ -56,9 +64,9 @@ app.delete("/books/:id", (req, res) => {
   });
 });
 
-app.put("/books/:id", (req, res) => {
+app.put("/movies/:id", (req, res) => {
   const bookId = req.params.id;
-  const q = "UPDATE books SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
+  const q = "UPDATE movies SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
 
   const values = [
     req.body.title,
