@@ -18,3 +18,15 @@ INSERT INTO movies (title, description, price, cover) VALUES
 
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 FLUSH PRIVILEGES;
+
+
+docker tag <image_id> <dockerhub_username>/<repository_name>:<tag>
+server: docker tag 18023f45e558a5756f2b5aa9f07fd42f3e7861fd4fb49028035c0e3e37d4cb57 sasithdinu/kushan_server:latest
+client: docker tag ccb5396309dad12b28b5add982db02f478e5cab8b7b676c8f14681bad86dad67 sasithdinu/kushan_client:latest
+
+docker push sasithdinu/kushan_server:latest
+docker push sasithdinu/kushan_client:latest
+
+
+Jenkins
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
